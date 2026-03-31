@@ -1,9 +1,13 @@
 import { Button } from '../../../components/ui/button';
+// react imports
+import { useState } from 'react';
 
 // icons
 import { FcGoogle } from 'react-icons/fc';
+import { FaEyeSlash, FaEye } from 'react-icons/fa';
 
 const LoginPage = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4">
       {/* HEADER */}
@@ -53,11 +57,22 @@ const LoginPage = () => {
               </span>
             </div>
 
-            <input
-              type="password"
-              defaultValue="wrongpassword123"
-              className="w-full mt-1 border border-red-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-500"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                defaultValue="wrongpassword123"
+                className="w-full mt-1 border border-red-300 rounded-lg px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+
+              {/* EYE BUTTON */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
 
           {/* CHECKBOX */}
